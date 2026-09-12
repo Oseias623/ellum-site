@@ -1,26 +1,151 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Cores Ellum - Design System Oficial */
+  --color-navy: #051D33;
+  --color-navy-soft: #0C2A47;
+  --color-navy-muted: #24384D;
+  --color-gold: #C4965F;
+  --color-gold-soft: #D8B987;
+  --color-ivory: #FAF8F3;
+  --color-parchment: #F4EFE6;
+  --color-white: #FFFFFF;
+  --color-ink: #161616;
+  --color-ink-muted: #5E5A54;
+  --color-stone: #D9D2C7;
+  --color-leather: #704728;
+
+  /* Theme */
+  --background: var(--color-ivory);
+  --foreground: var(--color-ink);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-navy: #051D33;
+  --color-navy-soft: #0C2A47;
+  --color-navy-muted: #24384D;
+  --color-gold: #C4965F;
+  --color-gold-soft: #D8B987;
+  --color-ivory: #FAF8F3;
+  --color-parchment: #F4EFE6;
+  --color-ink: #161616;
+  --color-ink-muted: #5E5A54;
+  --color-stone: #D9D2C7;
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-cormorant);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Tipografia */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-ivory);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-stone);
+  border-radius: 5px;
+  border: 2px solid var(--color-ivory);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-gold);
+  color: var(--color-navy);
+}
+
+/* Global Nav blur effect */
+.nav-blur {
+  background: rgba(250, 248, 243, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Focus states */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Image placeholders */
+.image-placeholder {
+  background: linear-gradient(135deg, var(--color-parchment) 0%, var(--color-stone) 100%);
+}
+
+/* Button hover lift */
+.btn-lift {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.btn-lift:hover {
+  transform: translateY(-1px);
+}
+
+/* Container max-width override */
+.container {
+  max-width: 1180px;
+}
+
+/* Photographs dissolve into the section surface, preserving their focal point. */
+.editorial-hero-veil {
+  background:
+    linear-gradient(to bottom, var(--color-ivory) 0%, transparent 22%, transparent 72%, var(--color-ivory) 100%),
+    linear-gradient(to right, var(--color-ivory) 0%, rgb(250 248 243 / 96%) 28%, rgb(250 248 243 / 80%) 46%, rgb(250 248 243 / 12%) 78%);
+}
+
+.editorial-library::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, var(--color-parchment), transparent 18%, transparent 72%, var(--color-parchment));
+}
+
+.editorial-portrait {
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent),
+    linear-gradient(to bottom, transparent, black 12%, black 76%, transparent);
+  mask-composite: intersect;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent),
+    linear-gradient(to bottom, transparent, black 12%, black 76%, transparent);
+  -webkit-mask-composite: source-in;
+}
+
+@media (min-width: 1024px) {
+  .editorial-library::after {
+    background:
+      linear-gradient(to right, transparent 48%, var(--color-parchment) 100%),
+      linear-gradient(to bottom, var(--color-parchment), transparent 18%, transparent 76%, var(--color-parchment));
+  }
+}
+
+@media (max-width: 1023px) {
+  .editorial-hero-veil {
+    background:
+      linear-gradient(to bottom, var(--color-ivory), rgb(250 248 243 / 90%) 20%, rgb(250 248 243 / 86%) 65%, var(--color-ivory)),
+      linear-gradient(to right, rgb(250 248 243 / 50%), transparent);
+  }
 }

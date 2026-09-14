@@ -9,10 +9,10 @@ export const metadata: Metadata = {
 
 const links = [
   {
-    href: "/simposio",
+    href: "/simposio-vendas",
     label: "Simpósio 2025",
     description: "Encontro para pais e educadores sobre educação cristã clássica.",
-    action: "Ver detalhes",
+    action: "Inscrever-se",
     highlight: true,
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

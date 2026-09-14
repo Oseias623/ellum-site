@@ -1,4 +1,7 @@
 {
   "project_id": "appgprj_6aa84545fbc48191a5e3c9cc7d08011d",
-  "expected_url": "https://ellum.magic-tick-6009.chatgpt.site"
+  "expected_url": "https://ellum.magic-tick-6009.chatgpt.site",
+  "static": {
+    "directory": "out"
+  }
 }

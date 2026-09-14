@@ -139,8 +139,8 @@ export default function MetodologiaPage() {
               mostrando aos alunos que toda verdade é verdade de Deus.
             </p>
             <blockquote className="text-xl italic text-gold border-l-4 border-gold pl-6 text-left">
-              "O temor do Senhor é o princípio da sabedoria, e o conhecimento do
-              Santo é entendimento."
+              &ldquo;O temor do Senhor é o princípio da sabedoria, e o conhecimento do
+              Santo é entendimento.&rdquo;
               <footer className="text-sm text-gray-500 mt-2 not-italic">
                 — Provérbios 9:10
               </footer>

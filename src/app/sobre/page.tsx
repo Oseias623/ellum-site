@@ -31,7 +31,7 @@ export default function SobrePage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <p className="text-xl md:text-2xl text-ink-muted leading-relaxed font-serif italic">
-                "Toda instituição precisa saber duas coisas: por que faz o que faz, e para onde está caminhando."
+                &ldquo;Toda instituição precisa saber duas coisas: por que faz o que faz, e para onde está caminhando.&rdquo;
               </p>
             </div>
 

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Header, Footer } from "@/components/layout";
 import { Button } from "@/components/ui";
+import { MatriculaForm } from "@/components/forms";
 
 export default function Home() {
   return (
@@ -34,7 +35,7 @@ export default function Home() {
                 Escola Cristã Clássica em Juiz de Fora, MG
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button href="/matriculas" size="lg">
+                <Button href="#interesse" size="lg">
                   Conheça a proposta
                 </Button>
                 <Button href="/contato" variant="outline" size="lg">
@@ -257,96 +258,7 @@ export default function Home() {
 
               {/* Formulário */}
               <div className="bg-white rounded-sm border border-navy/10 p-8 md:p-10">
-                <form className="space-y-6">
-                  <div className="grid sm:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="nome" className="block text-sm font-medium text-navy mb-2">
-                        Nome completo
-                      </label>
-                      <input
-                        type="text"
-                        id="nome"
-                        name="nome"
-                        required
-                        className="w-full px-4 py-3 bg-ivory border border-stone/50 rounded-sm text-ink placeholder:text-ink-muted/50 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-shadow"
-                        placeholder="Seu nome"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="telefone" className="block text-sm font-medium text-navy mb-2">
-                        Telefone / WhatsApp
-                      </label>
-                      <input
-                        type="tel"
-                        id="telefone"
-                        name="telefone"
-                        required
-                        className="w-full px-4 py-3 bg-ivory border border-stone/50 rounded-sm text-ink placeholder:text-ink-muted/50 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-shadow"
-                        placeholder="(32) 99999-9999"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-navy mb-2">
-                      E-mail
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      className="w-full px-4 py-3 bg-ivory border border-stone/50 rounded-sm text-ink placeholder:text-ink-muted/50 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-shadow"
-                      placeholder="seu@email.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="serie" className="block text-sm font-medium text-navy mb-2">
-                      Série de interesse
-                    </label>
-                    <select
-                      id="serie"
-                      name="serie"
-                      required
-                      className="w-full px-4 py-3 bg-ivory border border-stone/50 rounded-sm text-ink focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-shadow"
-                    >
-                      <option value="">Selecione a série</option>
-                      <option value="infantil-4">Educação Infantil (4 anos)</option>
-                      <option value="infantil-5">Educação Infantil (5 anos)</option>
-                      <option value="fund1-1">1º ano - Fundamental I</option>
-                      <option value="fund1-2">2º ano - Fundamental I</option>
-                      <option value="fund1-3">3º ano - Fundamental I</option>
-                      <option value="fund1-4">4º ano - Fundamental I</option>
-                      <option value="fund1-5">5º ano - Fundamental I</option>
-                      <option value="fund2">Fundamental II (6º ao 9º)</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="mensagem" className="block text-sm font-medium text-navy mb-2">
-                      Mensagem <span className="text-ink-muted font-normal">(opcional)</span>
-                    </label>
-                    <textarea
-                      id="mensagem"
-                      name="mensagem"
-                      rows={3}
-                      className="w-full px-4 py-3 bg-ivory border border-stone/50 rounded-sm text-ink placeholder:text-ink-muted/50 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-shadow resize-none"
-                      placeholder="Conte-nos um pouco sobre o que busca na educação do seu filho..."
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full py-4 bg-navy text-white font-semibold rounded-full hover:bg-navy-soft transition-colors"
-                  >
-                    Quero conhecer a ELLUM
-                  </button>
-
-                  <p className="text-xs text-ink-muted text-center">
-                    Ao enviar, você concorda em receber contato da nossa equipe.
-                  </p>
-                </form>
+                <MatriculaForm variant="editorial" submitLabel="Quero conhecer a ELLUM" />
               </div>
             </div>
           </div>

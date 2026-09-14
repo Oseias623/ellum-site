@@ -8,7 +8,8 @@ const navItems = [
   { href: "/", label: "Home" },
   { href: "/sobre", label: "Sobre" },
   { href: "/metodologia", label: "Metodologia" },
-  { href: "/matriculas", label: "Matrículas" },
+  { href: "/simposio", label: "Simpósio" },
+  { href: "/#interesse", label: "Matrículas" },
   { href: "/contato", label: "Contato" },
 ];
 
@@ -18,15 +19,17 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-navy">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-[72px]">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
               src="/images/logo-gold.png"
               alt="ELLUM - Escola Cristã Clássica"
-              width={52}
-              height={52}
-              className="h-[52px] w-auto"
+              width={140}
+              height={68}
+              priority
+              quality={100}
+              className="h-[68px] w-auto"
             />
           </Link>
 
@@ -45,7 +48,7 @@ export function Header() {
 
           {/* CTA Button */}
           <Link
-            href="/matriculas"
+            href="/#interesse"
             className="hidden md:flex items-center px-6 py-2.5 bg-gold text-navy font-semibold text-[15px] rounded-full hover:bg-gold-soft transition-colors"
           >
             Conheça a proposta
@@ -96,7 +99,7 @@ export function Header() {
               </Link>
             ))}
             <Link
-              href="/matriculas"
+              href="/#interesse"
               className="block mt-4 py-3 px-6 bg-gold text-navy text-center font-semibold text-sm rounded-full"
               onClick={() => setIsMenuOpen(false)}
             >

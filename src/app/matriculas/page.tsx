@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { Header, Footer } from "@/components/layout";
 import { Section, SectionHeader } from "@/components/ui";
-import { Button } from "@/components/ui";
+import { MatriculaForm } from "@/components/forms";
 
 export const metadata: Metadata = {
   title: "Matrículas | Ellum Escola Cristã Clássica",
@@ -77,76 +77,7 @@ export default function MatriculasPage() {
               title="Agende sua Visita"
               subtitle="Preencha o formulário e entraremos em contato"
             />
-            <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="nome" className="block text-sm font-medium text-gray-700 mb-2">
-                    Nome do Responsável
-                  </label>
-                  <input
-                    type="text"
-                    id="nome"
-                    name="nome"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent"
-                    placeholder="Seu nome completo"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="telefone" className="block text-sm font-medium text-gray-700 mb-2">
-                    Telefone
-                  </label>
-                  <input
-                    type="tel"
-                    id="telefone"
-                    name="telefone"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent"
-                    placeholder="(32) 99999-9999"
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  E-mail
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent"
-                  placeholder="seu@email.com"
-                />
-              </div>
-              <div>
-                <label htmlFor="serie" className="block text-sm font-medium text-gray-700 mb-2">
-                  Série de Interesse
-                </label>
-                <select
-                  id="serie"
-                  name="serie"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent"
-                >
-                  <option value="">Selecione a série</option>
-                  <option value="infantil">Educação Infantil</option>
-                  <option value="fundamental1">Fundamental I (1º ao 5º ano)</option>
-                  <option value="fundamental2">Fundamental II (6º ao 9º ano)</option>
-                </select>
-              </div>
-              <div>
-                <label htmlFor="mensagem" className="block text-sm font-medium text-gray-700 mb-2">
-                  Mensagem (opcional)
-                </label>
-                <textarea
-                  id="mensagem"
-                  name="mensagem"
-                  rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent"
-                  placeholder="Conte-nos um pouco sobre sua família e o que busca na educação do seu filho..."
-                />
-              </div>
-              <Button type="submit" size="lg" className="w-full">
-                Enviar Solicitação
-              </Button>
-            </form>
+            <MatriculaForm />
           </div>
         </Section>
 

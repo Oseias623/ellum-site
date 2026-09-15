@@ -4,9 +4,9 @@ import Link from "next/link";
 import { SimposioForm } from "@/components/forms";
 
 export const metadata: Metadata = {
-  title: "Inscrição | Simpósio de Educação Cristã Clássica",
+  title: "Inscrição | I Simpósio de ECC de JF",
   description:
-    "Garanta sua inscrição no Simpósio de Educação Cristã Clássica: A Paideia de Deus, em Juiz de Fora, MG.",
+    "Garanta sua inscrição no I Simpósio de ECC de JF: A Paideia de Deus, em Juiz de Fora, MG.",
 };
 
 const conversations = [
@@ -87,7 +87,7 @@ export default function SimposioVendasPage() {
               height={128}
               priority
               quality={100}
-              className="h-auto w-28 sm:w-36"
+              className="h-auto w-36 sm:w-48"
             />
             <Link
               href="/simposio"
@@ -103,7 +103,7 @@ export default function SimposioVendasPage() {
                 Juiz de Fora | 9 e 10 de outubro
               </p>
               <h1 className="max-w-4xl font-serif text-5xl leading-[0.96] md:text-7xl lg:text-[88px]">
-                Simpósio de Educação Cristã Clássica
+                I Simpósio de ECC de JF
               </h1>
               <p className="mt-8 max-w-2xl font-serif text-2xl italic leading-snug text-gold md:text-3xl">
                 A Paideia de Deus
@@ -149,7 +149,7 @@ export default function SimposioVendasPage() {
                 de mundo?
               </p>
               <p>
-                O Simpósio de Educação Cristã Clássica nasce como um chamado à reflexão e à
+                O I Simpósio de ECC de JF nasce como um chamado à reflexão e à
                 responsabilidade sobre a formação das próximas gerações.
               </p>
               <p>
@@ -332,7 +332,7 @@ export default function SimposioVendasPage() {
                 Inscrição
               </p>
               <h2 className="font-serif text-4xl leading-tight md:text-5xl">
-                Garanta sua inscrição no Simpósio de Educação Cristã Clássica.
+                Garanta sua inscrição no I Simpósio de ECC de JF.
               </h2>
               <div className="mt-8 space-y-4 text-white/68">
                 <p>A Paideia de Deus</p>

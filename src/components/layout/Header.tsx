@@ -5,11 +5,10 @@ import Image from "next/image";
 import { useState } from "react";
 
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/sobre", label: "Sobre" },
-  { href: "/metodologia", label: "Metodologia" },
+  { href: "/sobre", label: "Quem Somos" },
+  { href: "/metodologia", label: "Educação Cristã Clássica" },
   { href: "/simposio", label: "Simpósio" },
-  { href: "/#interesse", label: "Matrículas" },
+  { href: "/#interesse", label: "Admissões" },
   { href: "/contato", label: "Contato" },
 ];
 
@@ -19,7 +18,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-navy">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-24">
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
@@ -29,17 +28,17 @@ export function Header() {
               height={68}
               priority
               quality={100}
-              className="h-[68px] w-auto"
+              className="h-[84px] w-auto"
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-white/80 tracking-wide hover:text-gold transition-colors"
+                className="text-sm font-medium text-white/80 hover:text-gold transition-colors"
               >
                 {item.label}
               </Link>
@@ -49,14 +48,14 @@ export function Header() {
           {/* CTA Button */}
           <Link
             href="/#interesse"
-            className="hidden md:flex items-center px-6 py-2.5 bg-gold text-navy font-semibold text-[15px] rounded-full hover:bg-gold-soft transition-colors"
+            className="hidden lg:flex items-center px-6 py-2.5 bg-gold text-navy font-semibold text-[15px] rounded-full hover:bg-gold-soft transition-colors"
           >
-            Conheça a proposta
+            Agende uma visita
           </Link>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-white"
+            className="lg:hidden p-2 text-white"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Menu"
           >
@@ -87,7 +86,7 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-white/10">
+          <nav className="lg:hidden py-4 border-t border-white/10">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -103,7 +102,7 @@ export function Header() {
               className="block mt-4 py-3 px-6 bg-gold text-navy text-center font-semibold text-sm rounded-full"
               onClick={() => setIsMenuOpen(false)}
             >
-              Conheça a proposta
+              Agende uma visita
             </Link>
           </nav>
         )}

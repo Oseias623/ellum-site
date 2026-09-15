@@ -111,37 +111,37 @@ export default function SobrePage() {
           </div>
         </Section>
 
-        {/* Por que existimos */}
+        {/* Nossa História */}
         <Section>
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
               <span className="text-gold uppercase tracking-[0.08em] text-xs font-semibold">
-                Por que existimos
+                Nossa História
               </span>
               <h2 className="text-3xl md:text-4xl font-serif text-navy mt-4 mb-6">
-                É por isso que existimos. É para isso que caminhamos.
+                Sejam bem-vindos à Ellum Escola Cristã Clássica!
               </h2>
             </div>
             <div className="prose prose-lg max-w-none text-ink-muted">
               <p className="leading-relaxed mb-6">
-                Na ELLUM, essas respostas orientam cada decisão, cada relacionamento e cada prática pedagógica.
+                Nascemos como fruto do profundo senso de dever e responsabilidade diante de
+                Deus e das próximas gerações, incluindo nossos próprios filhos. Somos uma
+                comunidade de famílias e educadores que desejam avançar o Reino de Deus,
+                movidos por um senso de urgência pela presença fiel de cristãos no contexto
+                educacional da cidade de Juiz de Fora.
               </p>
               <p className="leading-relaxed mb-6">
-                Nossa missão define o compromisso que assumimos diariamente diante de Deus e das famílias
-                que caminham conosco. Ela expressa aquilo que buscamos construir na vida de cada aluno,
-                formando pessoas que unam conhecimento, sabedoria, virtude e fé.
-              </p>
-              <p className="leading-relaxed mb-6">
-                Nossa visão amplia esse horizonte. Ela revela o futuro que desejamos ajudar a construir:
-                uma geração de homens e mulheres firmes em sua fé, maduros em caráter, preparados para
-                servir à igreja, fortalecer suas famílias, exercer sua vocação com excelência e glorificar
-                a Deus em todas as áreas da vida.
+                Nossa crença central reside na Soberania de Deus sobre todas as áreas da vida.
+                Não há divisão entre &ldquo;mundo cristão&rdquo; e &ldquo;mundo secular&rdquo;. Há
+                somente um mundo, o mundo que Deus fez. Como afirmou Abraham Kuyper, um dos
+                primeiros-ministros da Holanda e fundador da Universidade Livre de Amsterdã,
+                Deus olha para toda a criação e declara que não há nada, nem mesmo do tamanho
+                de um átomo, que não seja Dele.
               </p>
               <p className="leading-relaxed">
-                Não medimos nosso sucesso apenas pelos resultados acadêmicos ou pelo crescimento da escola.
-                Nossa maior esperança é que, ao longo das próximas décadas, possamos ver os frutos de uma
-                educação fiel florescendo em lares, igrejas, profissões e comunidades, contribuindo para
-                o fortalecimento da cultura e para o avanço do Reino de Deus.
+                Certamente, não há nada no mundo físico, no mundo espiritual, na história, na
+                ciência ou na ortografia; nem na literatura, na arte ou na matemática; nem em
+                governos, culturas ou sociedades. É tudo Dele.
               </p>
             </div>
           </div>

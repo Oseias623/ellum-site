@@ -11,9 +11,9 @@ export function Footer() {
             <Image
               src="/images/logo-gold.png"
               alt="ELLUM - Escola Cristã Clássica"
-              width={80}
-              height={80}
-              className="h-20 w-auto mb-4"
+              width={140}
+              height={98}
+              className="h-28 w-auto mb-4"
             />
             <p className="text-sm text-gray-400 leading-relaxed">
               Formação integral para cultivar sabedoria, virtude e amor à verdade.
@@ -26,17 +26,22 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link href="/sobre" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Sobre Nós
+                  Quem Somos
                 </Link>
               </li>
               <li>
                 <Link href="/metodologia" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Metodologia
+                  Educação Cristã Clássica
                 </Link>
               </li>
               <li>
-                <Link href="/matriculas" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Matrículas
+                <Link href="/simposio" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  Simpósio
+                </Link>
+              </li>
+              <li>
+                <Link href="/#interesse" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  Admissões
                 </Link>
               </li>
               <li>

@@ -3,8 +3,8 @@ import Image from "next/image";
 import { SimposioForm } from "@/components/forms/SimposioForm";
 
 export const metadata: Metadata = {
-  title: "Simpósio de Educação Cristã Clássica | A Paideia de Deus",
-  description: "Participe do Simpósio de Educação Cristã Clássica em Juiz de Fora, MG, realizado pela ELLUM.",
+  title: "I Simpósio de ECC de JF | A Paideia de Deus",
+  description: "Participe do I Simpósio de ECC de JF: A Paideia de Deus, realizado pela ELLUM.",
 };
 
 export default function SimposioPage() {
@@ -29,7 +29,7 @@ export default function SimposioPage() {
               height={156}
               priority
               quality={100}
-              className="h-auto w-36 sm:w-44 md:w-52 object-contain mx-auto"
+              className="h-auto w-44 sm:w-56 md:w-64 object-contain mx-auto"
             />
           </div>
 
@@ -43,7 +43,7 @@ export default function SimposioPage() {
 
           {/* Title */}
           <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-white mb-4">
-            Simpósio de Educação Cristã Clássica
+            I Simpósio de ECC de JF
           </h1>
           <p className="text-gold text-xl md:text-2xl font-serif mb-8">
             A Paideia de Deus
@@ -139,7 +139,7 @@ export default function SimposioPage() {
           <div className="max-w-xl mx-auto">
             <div className="text-center mb-10">
               <h2 className="font-serif text-3xl md:text-4xl text-white mb-4">
-                Simpósio de Educação Cristã Clássica
+                I Simpósio de ECC de JF
               </h2>
               <p className="text-white/60">
                 A Paideia de Deus. Uma educação integral, centrada em Cristo e fundamentada na Palavra.

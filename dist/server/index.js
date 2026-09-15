@@ -2,6 +2,7 @@ const HTML_ROUTES = new Set([
   "/",
   "/sobre",
   "/metodologia",
+  "/diferenciais",
   "/matriculas",
   "/contato",
   "/links",
@@ -32,8 +33,10 @@ function assetRequest(request) {
   return request;
 }
 
-export default {
+const worker = {
   fetch(request, env) {
     return env.ASSETS.fetch(assetRequest(request));
   },
 };
+
+export default worker;

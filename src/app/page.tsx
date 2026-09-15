@@ -9,7 +9,7 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         {/* Hero — full viewport, editorial image dominates */}
-        <section className="relative min-h-[calc(100vh-68px)] flex items-center overflow-hidden">
+        <section className="relative min-h-[calc(100vh-96px)] flex items-center overflow-hidden">
           <div className="absolute inset-0 bg-parchment">
             <Image
               src="/images/hero-editorial.jpg"
@@ -29,17 +29,17 @@ export default function Home() {
                 ELLUM
               </h1>
               <p className="text-2xl md:text-[28px] font-serif italic text-navy/80 leading-snug mb-4 max-w-lg">
-                Formação integral para cultivar sabedoria, virtude e amor à verdade.
+                Servindo as famílias de Juiz de Fora com uma educação cristã clássica centrada em Cristo.
               </p>
               <p className="text-base text-ink-muted mb-10 max-w-md">
-                Escola Cristã Clássica em Juiz de Fora, MG
+                Educação Infantil ao 3º ano do Ensino Fundamental | 2027
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button href="#interesse" size="lg">
-                  Conheça a proposta
+                <Button href="/sobre" size="lg">
+                  Conheça a ELLUM
                 </Button>
-                <Button href="/contato" variant="outline" size="lg">
-                  Fale conosco
+                <Button href="#interesse" variant="outline" size="lg">
+                  Agende uma visita
                 </Button>
               </div>
             </div>
@@ -162,7 +162,7 @@ export default function Home() {
                   </p>
                   <p>
                     Este método tem sido usado por séculos para formar grandes pensadores,
-                    líderes e santos.
+                    líderes.
                   </p>
                 </div>
                 <Button href="/metodologia" variant="secondary">
@@ -232,7 +232,7 @@ export default function Home() {
                 </h2>
                 <p className="text-lg text-ink-muted leading-relaxed mb-8">
                   Preencha o formulário e nossa equipe entrará em contato para agendar uma visita
-                  e apresentar nossa proposta de educação cristã clássica.
+                  e apresentar nossa proposta pedagógica.
                 </p>
                 <div className="space-y-4 text-ink-muted">
                   <div className="flex items-center gap-3">
@@ -284,7 +284,7 @@ export default function Home() {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
                 <h2 className="text-3xl md:text-4xl font-serif text-navy leading-tight mb-8">
-                  Venha nos visitar
+                  NO CORAÇÃO DA CIDADE ALTA
                 </h2>
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
@@ -300,17 +300,6 @@ export default function Home() {
                         Av. Pres. Costa e Silva, 1740<br />
                         São Pedro, Juiz de Fora — MG
                       </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center shrink-0 mt-1">
-                      <svg className="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-lg text-navy font-medium">Horário</p>
-                      <p className="text-ink-muted">Segunda a Sexta: 7h às 17h</p>
                     </div>
                   </div>
                 </div>

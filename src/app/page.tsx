@@ -3,6 +3,56 @@ import { Header, Footer } from "@/components/layout";
 import { Button } from "@/components/ui";
 import { MatriculaForm } from "@/components/forms";
 
+const diferenciais = [
+  "Educação Cristocêntrica e Logocêntrica",
+  "Método fônico de alfabetização",
+  "Programa Bilíngue diário incluso",
+  "Línguas Clássicas: latim e grego",
+  "Grandes Livros",
+  "Belas Artes",
+  "Flauta e Piano",
+  "Projeto Autoeducação",
+  "Disciplina de Lógica Tradicional",
+  "Xadrez",
+];
+
+const extracurriculares = [
+  {
+    title: "Jiu-Jitsu",
+    text: "Disciplina, domínio próprio, respeito e perseverança no cuidado do corpo.",
+    image: "/images/jiu-jitsu-editorial.webp",
+    alt: "Criança praticando Jiu-Jitsu em ambiente escolar clássico",
+  },
+  {
+    title: "Ballet",
+    text: "Postura, graça, coordenação e beleza no movimento como parte da formação integral.",
+    image: "/images/ballet-editorial.webp",
+    alt: "Criança praticando ballet em estúdio clássico",
+  },
+];
+
+const classicalFoundations = [
+  ["Piedade", "Justos amores, justos temores: dever, amor e respeito devido a Deus, aos pais e às autoridades."],
+  ["Artes Liberais", "As artes do Trivium e do Quadrivium formam virtudes intelectuais para buscar a sabedoria."],
+  ["Trivium", "Gramática, dialética e retórica educam linguagem, leitura, escrita, debate e expressão pública."],
+  ["Quadrivium", "Aritmética, geometria, música e astronomia revelam ordem, medida e harmonia na criação."],
+  ["Educação Musical", "Canções, flauta e piano colaboram na formação do coração e da imaginação moral."],
+  ["Grandes Livros", "Obras antigas e duradouras oferecem aos alunos realidades que resistiram ao tempo."],
+];
+
+const pedagogicalPrinciples = [
+  "Festina Lente",
+  "Multum non Multa",
+  "Repetitio Mater Memoriae",
+  "Música, Rimas, Recitação e Cantigas",
+  "Maravilhamento e Curiosidade",
+  "Scholé e a Contemplação",
+  "Educação Incorporada e Litúrgica",
+  "Docendo Discimus",
+  "Optimus Magister Bonus Liber Est",
+  "Conversa",
+];
+
 export default function Home() {
   return (
     <>
@@ -35,10 +85,10 @@ export default function Home() {
                 Educação Infantil ao 3º ano do Ensino Fundamental | 2027
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button href="/sobre" size="lg">
+                <Button href="#quem-somos" size="lg">
                   Conheça a ELLUM
                 </Button>
-                <Button href="#interesse" variant="outline" size="lg">
+                <Button href="#admissoes" variant="outline" size="lg">
                   Agende uma visita
                 </Button>
               </div>
@@ -106,7 +156,7 @@ export default function Home() {
         </section>
 
         {/* Sobre — two column with strong visual */}
-        <section className="relative overflow-hidden bg-parchment py-16 md:py-24 lg:py-32">
+        <section id="quem-somos" className="relative overflow-hidden bg-parchment py-16 md:py-24 lg:py-32 scroll-mt-24">
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className="order-2 -mx-4 lg:mx-0 lg:order-1 lg:min-h-[620px]">
@@ -136,10 +186,26 @@ export default function Home() {
                     responsabilidade e glorificar a Deus em todas as áreas da vida.
                   </p>
                 </div>
-                <div className="mt-10">
-                  <Button href="/sobre" variant="secondary">
-                    Conheça nossa história
-                  </Button>
+                <div className="mt-10 border-t border-gold/40 pt-8">
+                  <h3 className="mb-4 font-serif text-2xl text-navy">Nossa História</h3>
+                  <div className="space-y-5 text-ink-muted leading-relaxed">
+                    <p>
+                      Sejam bem-vindos à Ellum Escola Cristã Clássica. Nascemos como fruto
+                      do profundo senso de dever e responsabilidade diante de Deus e das
+                      próximas gerações, incluindo nossos próprios filhos.
+                    </p>
+                    <p>
+                      Somos uma comunidade de famílias e educadores que desejam avançar o
+                      Reino de Deus, movidos por um senso de urgência pela presença fiel de
+                      cristãos no contexto educacional da cidade de Juiz de Fora.
+                    </p>
+                    <p>
+                      Nossa crença central reside na Soberania de Deus sobre todas as áreas
+                      da vida. Não há divisão entre &ldquo;mundo cristão&rdquo; e
+                      &ldquo;mundo secular&rdquo;. Há somente um mundo, o mundo que Deus fez.
+                      É tudo Dele.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -147,27 +213,25 @@ export default function Home() {
         </section>
 
         {/* Metodologia — editorial approach */}
-        <section className="bg-ivory py-24 md:py-32">
+        <section id="educacao-crista-classica" className="bg-ivory py-24 md:py-32 scroll-mt-24">
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-16 items-start">
               {/* Conteúdo */}
               <div>
                 <h2 className="text-3xl md:text-4xl lg:text-[44px] font-serif text-navy leading-tight mb-8">
-                  O Trivium: educação que acompanha o desenvolvimento
+                  Educação Cristã Clássica
                 </h2>
                 <div className="space-y-6 text-ink-muted text-lg leading-relaxed mb-10">
                   <p>
-                    A Educação Clássica utiliza o método do Trivium, que aproveita as fases naturais
-                    do desenvolvimento cognitivo da criança para maximizar o aprendizado.
+                    A Educação Cristã Clássica ordena os amores, cultiva virtudes
+                    intelectuais e forma a pessoa inteira diante de Deus.
                   </p>
                   <p>
-                    Este método tem sido usado por séculos para formar grandes pensadores,
-                    líderes.
+                    As artes liberais, o Trivium, o Quadrivium, a música, a ginástica,
+                    as belas artes, os grandes livros, o latim e o grego compõem uma
+                    formação que busca sabedoria, não apenas desempenho.
                   </p>
                 </div>
-                <Button href="/metodologia" variant="secondary">
-                  Saiba mais sobre a metodologia
-                </Button>
                 <div className="editorial-portrait relative mt-10 aspect-[4/5] w-full">
                   <Image
                     src="/images/aluno-uniforme.jpg"
@@ -179,42 +243,100 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Trivium visual */}
+              {/* Fundamentos */}
               <div className="bg-white rounded-sm border border-navy/10 p-10 md:p-12">
-                <div className="space-y-10">
-                  {[
-                    {
-                      num: "1",
-                      name: "Gramática",
-                      ages: "4–10 anos",
-                      desc: "Fase de absorção: memorização e fundamentos"
-                    },
-                    {
-                      num: "2",
-                      name: "Lógica",
-                      ages: "10–14 anos",
-                      desc: "Fase de questionamento: análise e argumentação"
-                    },
-                    {
-                      num: "3",
-                      name: "Retórica",
-                      ages: "14–18 anos",
-                      desc: "Fase de expressão: comunicação e liderança"
-                    },
-                  ].map((phase, idx) => (
-                    <div key={phase.num} className={`flex gap-6 ${idx !== 2 ? 'pb-10 border-b border-stone/50' : ''}`}>
-                      <div className="w-14 h-14 bg-navy text-white rounded-full flex items-center justify-center font-serif text-2xl shrink-0">
-                        {phase.num}
-                      </div>
-                      <div>
-                        <div className="flex items-baseline gap-3 mb-1">
-                          <h3 className="font-serif text-xl text-navy">{phase.name}</h3>
-                          <span className="text-sm text-ink-muted">{phase.ages}</span>
-                        </div>
-                        <p className="text-ink-muted">{phase.desc}</p>
-                      </div>
+                <div className="space-y-8">
+                  {classicalFoundations.map(([title, text]) => (
+                    <div key={title} className="border-b border-stone/50 pb-7 last:border-b-0 last:pb-0">
+                      <h3 className="font-serif text-2xl text-navy">{title}</h3>
+                      <p className="mt-3 text-ink-muted leading-relaxed">{text}</p>
                     </div>
                   ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-16 border-t border-gold/40 pt-10">
+              <h3 className="mb-8 font-serif text-3xl text-navy">
+                Princípios Pedagógicos da Educação Clássica
+              </h3>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+                {pedagogicalPrinciples.map((principle) => (
+                  <div key={principle} className="bg-parchment px-5 py-4 text-sm font-medium text-navy">
+                    {principle}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="diferenciais" className="bg-parchment py-24 md:py-32 scroll-mt-24">
+          <div className="container mx-auto px-4">
+            <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+              <div>
+                <h2 className="text-3xl md:text-4xl lg:text-[44px] font-serif text-navy leading-tight mb-6">
+                  Diferenciais
+                </h2>
+                <p className="text-lg leading-relaxed text-ink-muted">
+                  Uma cultura escolar pensada para formar a criança por inteiro:
+                  inteligência, caráter, afetos, linguagem, corpo e imaginação.
+                </p>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {diferenciais.map((item) => (
+                  <div key={item} className="border-t border-gold bg-white p-5">
+                    <p className="font-serif text-xl leading-tight text-navy">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="mt-16 grid gap-6 md:grid-cols-2">
+              {extracurriculares.map((item) => (
+                <article key={item.title} className="overflow-hidden bg-white">
+                  <div className="relative aspect-[4/3]">
+                    <Image
+                      src={item.image}
+                      alt={item.alt}
+                      fill
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="border-t border-gold p-7">
+                    <h3 className="font-serif text-3xl text-navy">{item.title}</h3>
+                    <p className="mt-3 leading-relaxed text-ink-muted">{item.text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="simposio" className="bg-navy-soft py-24 text-white md:py-32 scroll-mt-24">
+          <div className="container mx-auto px-4">
+            <div className="grid gap-12 lg:grid-cols-[1fr_0.85fr] lg:items-center">
+              <div>
+                <h2 className="text-3xl md:text-4xl lg:text-[44px] font-serif leading-tight mb-6">
+                  I Simpósio de ECC de JF
+                </h2>
+                <p className="font-serif text-2xl italic text-gold mb-6">
+                  A Paideia de Deus
+                </p>
+                <p className="max-w-2xl text-lg leading-relaxed text-white/70">
+                  Dois dias de reflexão para famílias, educadores e líderes cristãos
+                  sobre uma educação integral, centrada em Cristo e fundamentada na Palavra.
+                </p>
+              </div>
+              <div className="border border-gold/20 p-8">
+                <p className="text-gold">9 e 10 de outubro | Juiz de Fora — MG</p>
+                <p className="mt-5 text-white/65">
+                  A página de captura do simpósio reúne programação, inscrição e detalhes do evento.
+                </p>
+                <div className="mt-8">
+                  <Button href="/simposio" size="lg" className="bg-gold text-navy hover:bg-gold-soft">
+                    Ir para inscrição
+                  </Button>
                 </div>
               </div>
             </div>
@@ -222,7 +344,7 @@ export default function Home() {
         </section>
 
         {/* Formulário de Interesse */}
-        <section className="bg-parchment py-24 md:py-32" id="interesse">
+        <section className="bg-parchment py-24 md:py-32 scroll-mt-24" id="admissoes">
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-16 items-start">
               {/* Texto */}
@@ -279,7 +401,7 @@ export default function Home() {
         </section>
 
         {/* Localização */}
-        <section className="bg-ivory py-24 md:py-32">
+        <section id="contato" className="bg-ivory py-24 md:py-32 scroll-mt-24">
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>

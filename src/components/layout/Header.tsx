@@ -5,11 +5,11 @@ import Image from "next/image";
 import { useState } from "react";
 
 const navItems = [
-  { href: "/sobre", label: "Quem Somos" },
-  { href: "/metodologia", label: "Educação Cristã Clássica" },
-  { href: "/simposio", label: "Simpósio" },
-  { href: "/#interesse", label: "Admissões" },
-  { href: "/contato", label: "Contato" },
+  { href: "/#quem-somos", label: "Quem Somos" },
+  { href: "/#educacao-crista-classica", label: "Educação Cristã Clássica" },
+  { href: "/#simposio", label: "Simpósio" },
+  { href: "/#admissoes", label: "Admissões" },
+  { href: "/#contato", label: "Contato" },
 ];
 
 export function Header() {
@@ -47,7 +47,7 @@ export function Header() {
 
           {/* CTA Button */}
           <Link
-            href="/#interesse"
+            href="/#admissoes"
             className="hidden lg:flex items-center px-6 py-2.5 bg-gold text-navy font-semibold text-[15px] rounded-full hover:bg-gold-soft transition-colors"
           >
             Agende uma visita
@@ -98,7 +98,7 @@ export function Header() {
               </Link>
             ))}
             <Link
-              href="/#interesse"
+              href="/#admissoes"
               className="block mt-4 py-3 px-6 bg-gold text-navy text-center font-semibold text-sm rounded-full"
               onClick={() => setIsMenuOpen(false)}
             >

@@ -25,27 +25,27 @@ export function Footer() {
             <h4 className="font-serif text-lg text-gold mb-4">Navegação</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/sobre" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <Link href="/#quem-somos" className="text-sm text-gray-400 hover:text-white transition-colors">
                   Quem Somos
                 </Link>
               </li>
               <li>
-                <Link href="/metodologia" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <Link href="/#educacao-crista-classica" className="text-sm text-gray-400 hover:text-white transition-colors">
                   Educação Cristã Clássica
                 </Link>
               </li>
               <li>
-                <Link href="/simposio" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <Link href="/#simposio" className="text-sm text-gray-400 hover:text-white transition-colors">
                   Simpósio
                 </Link>
               </li>
               <li>
-                <Link href="/#interesse" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <Link href="/#admissoes" className="text-sm text-gray-400 hover:text-white transition-colors">
                   Admissões
                 </Link>
               </li>
               <li>
-                <Link href="/contato" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <Link href="/#contato" className="text-sm text-gray-400 hover:text-white transition-colors">
                   Contato
                 </Link>
               </li>

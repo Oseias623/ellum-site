@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 
 const links = [
   {
-    href: "/simposio-vendas",
-    label: "Simpósio 2025",
+    href: "/simposio",
+    label: "I Simpósio de ECC de JF",
     description: "Encontro para pais e educadores sobre educação cristã clássica.",
     action: "Inscrever-se",
     highlight: true,
@@ -21,7 +21,7 @@ const links = [
     ),
   },
   {
-    href: "/#interesse",
+    href: "/#admissoes",
     label: "Matrículas 2027",
     description: "Agende uma visita e conheça a proposta pedagógica da ELLUM.",
     action: "Tenho interesse",
@@ -34,7 +34,7 @@ const links = [
   {
     href: "/",
     label: "Nosso Site",
-    description: "História, metodologia, localização e informações da escola.",
+    description: "História, educação cristã clássica, admissões e contato.",
     action: "Acessar site",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -1,13 +1,7 @@
 const HTML_ROUTES = new Set([
   "/",
-  "/sobre",
-  "/metodologia",
-  "/diferenciais",
-  "/matriculas",
-  "/contato",
   "/links",
   "/simposio",
-  "/simposio-vendas",
 ]);
 
 const CLIENT_PREFIX = "/dist/client";

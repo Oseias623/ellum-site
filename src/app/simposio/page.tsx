@@ -3,8 +3,9 @@ import Image from "next/image";
 import { SimposioForm } from "@/components/forms/SimposioForm";
 
 export const metadata: Metadata = {
-  title: "I Simpósio de ECC de JF | A Paideia de Deus",
-  description: "Participe do I Simpósio de ECC de JF: A Paideia de Deus, realizado pela ELLUM.",
+  title: "I Simpósio de Educação Cristã Clássica de Juiz de Fora | A Paideia de Deus",
+  description:
+    "Participe do I Simpósio de Educação Cristã Clássica de Juiz de Fora: uma conversa necessária sobre a formação das próximas gerações.",
 };
 
 export default function SimposioPage() {
@@ -42,16 +43,20 @@ export default function SimposioPage() {
           </div>
 
           {/* Title */}
-          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-white mb-4">
-            I Simpósio de ECC de JF
+          <h1 className="mx-auto max-w-5xl font-serif text-4xl md:text-6xl lg:text-7xl text-white mb-4">
+            I Simpósio de Educação Cristã Clássica de Juiz de Fora
           </h1>
           <p className="text-gold text-xl md:text-2xl font-serif mb-8">
             A Paideia de Deus
           </p>
 
           {/* Tagline */}
-          <p className="text-white/70 text-lg md:text-xl max-w-2xl mx-auto mb-12">
-            Uma educação integral, centrada em Cristo e fundamentada na Palavra.
+          <p className="mx-auto mb-5 max-w-3xl font-serif text-2xl leading-snug text-white md:text-3xl">
+            Uma conversa necessária sobre a formação das próximas gerações.
+          </p>
+          <p className="text-white/70 text-lg md:text-xl max-w-3xl mx-auto mb-12">
+            Pais, educadores e líderes reunidos para pensar uma educação integral,
+            centrada em Cristo e fundamentada na Palavra.
           </p>
 
           {/* Event details */}
@@ -139,10 +144,17 @@ export default function SimposioPage() {
           <div className="max-w-xl mx-auto">
             <div className="text-center mb-10">
               <h2 className="font-serif text-3xl md:text-4xl text-white mb-4">
-                I Simpósio de ECC de JF
+                I Simpósio de Educação Cristã Clássica de Juiz de Fora
               </h2>
-              <p className="text-white/60">
-                A Paideia de Deus. Uma educação integral, centrada em Cristo e fundamentada na Palavra.
+              <p className="font-serif text-xl text-gold">
+                A Paideia de Deus
+              </p>
+              <p className="mt-4 text-white/75">
+                Uma conversa necessária sobre a formação das próximas gerações.
+              </p>
+              <p className="mt-3 text-white/60">
+                Pais, educadores e líderes reunidos para pensar uma educação integral,
+                centrada em Cristo e fundamentada na Palavra.
               </p>
               <p className="text-gold/80 text-sm mt-4">
                 9 e 10 de outubro | Juiz de Fora — MG

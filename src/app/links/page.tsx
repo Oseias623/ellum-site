@@ -10,8 +10,9 @@ export const metadata: Metadata = {
 const links = [
   {
     href: "/simposio",
-    label: "I Simpósio de ECC de JF",
-    description: "Encontro para pais e educadores sobre educação cristã clássica.",
+    label: "I Simpósio de Educação Cristã Clássica de Juiz de Fora",
+    headline: "Uma conversa necessária sobre a formação das próximas gerações.",
+    description: "Pais, educadores e líderes reunidos para pensar uma educação integral, centrada em Cristo e fundamentada na Palavra.",
     action: "Inscrever-se",
     highlight: true,
     icon: (
@@ -94,15 +95,15 @@ export default function LinksPage() {
       </div>
 
       <div className="relative z-10 mx-auto flex w-full max-w-[430px] flex-col items-center">
-        <div className="mb-5">
+        <div className="mb-6">
           <Image
             src="/images/logo-gold.png"
             alt="ELLUM"
-            width={180}
-            height={128}
+            width={280}
+            height={200}
             priority
             quality={100}
-            className="h-auto w-32 object-contain"
+            className="h-auto w-44 sm:w-48 object-contain"
           />
         </div>
 
@@ -119,25 +120,30 @@ export default function LinksPage() {
         {featuredLink && (
           <Link
             href={featuredLink.href}
-            className="group relative mb-4 min-h-44 w-full overflow-hidden rounded-lg bg-gold p-6 text-navy shadow-[0_22px_55px_rgb(0_0_0/0.22)] transition duration-300 hover:-translate-y-1 hover:bg-gold-soft focus-visible:-translate-y-1"
+            className="group relative mb-4 w-full overflow-hidden rounded-lg bg-gold p-6 text-navy shadow-[0_22px_55px_rgb(0_0_0/0.22)] transition duration-300 hover:-translate-y-1 hover:bg-gold-soft focus-visible:-translate-y-1"
           >
             <span className="absolute -right-8 -top-10 h-36 w-36 rounded-full border border-navy/10" />
             <span className="absolute -right-4 -top-6 h-24 w-24 rounded-full border border-navy/10" />
-            <span className="relative flex h-full flex-col justify-between gap-7">
+            <span className="relative flex h-full flex-col gap-5">
               <span className="flex items-start justify-between gap-4">
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-navy text-gold">
                   {featuredLink.icon}
                 </span>
               </span>
               <span>
-                <span className="mb-2 block font-serif text-3xl leading-none">
+                <span className="mb-3 block font-serif text-2xl leading-tight">
                   {featuredLink.label}
                 </span>
-                <span className="block max-w-[18rem] text-sm leading-relaxed text-navy/75">
+                {featuredLink.headline && (
+                  <span className="mb-2 block font-serif text-lg italic leading-snug text-navy/90">
+                    {featuredLink.headline}
+                  </span>
+                )}
+                <span className="block text-sm leading-relaxed text-navy/70">
                   {featuredLink.description}
                 </span>
               </span>
-              <span className="flex items-center justify-between text-sm font-semibold">
+              <span className="flex items-center justify-between text-sm font-semibold pt-2">
                 {featuredLink.action}
                 <svg
                   className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 group-focus-visible:translate-x-1"

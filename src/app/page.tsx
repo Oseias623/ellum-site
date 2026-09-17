@@ -4,16 +4,16 @@ import { Button } from "@/components/ui";
 import { MatriculaForm } from "@/components/forms";
 
 const diferenciais = [
-  "Educação Cristocêntrica e Logocêntrica",
-  "Método fônico de alfabetização",
-  "Programa Bilíngue diário incluso",
-  "Línguas Clássicas: latim e grego",
-  "Grandes Livros",
-  "Belas Artes",
-  "Flauta e Piano",
-  "Projeto Autoeducação",
-  "Disciplina de Lógica Tradicional",
-  "Xadrez",
+  { title: "Educação Cristocêntrica e Logocêntrica", desc: "Cristo é o centro de todo conhecimento e a Palavra de Deus é o fundamento." },
+  { title: "Método fônico de alfabetização", desc: "Alfabetização sólida que ensina a decodificar a língua com precisão." },
+  { title: "Programa Bilíngue", desc: "Familiarização diária com a língua inglesa." },
+  { title: "Línguas Clássicas: latim e grego", desc: "O estudo do latim aguça o raciocínio analítico e a compreensão linguística." },
+  { title: "Grandes Livros", desc: "Obras que transcendem o tempo e nutrem a alma com verdades duradouras." },
+  { title: "Belas Artes", desc: "Cultivo do senso estético e da imaginação moral através da arte." },
+  { title: "Flauta e Piano", desc: "Treinamento musical que afina a alma e forma o coração." },
+  { title: "Projeto Autoeducação", desc: "Projetos autodidatas que estimulam curiosidade e retórica." },
+  { title: "Disciplina de Lógica Tradicional", desc: "Arte de pensar com clareza, ordem e coerência." },
+  { title: "Xadrez", desc: "Estratégia, concentração e pensamento de longo prazo." },
 ];
 
 const extracurriculares = [
@@ -41,16 +41,16 @@ const classicalFoundations = [
 ];
 
 const pedagogicalPrinciples = [
-  "Festina Lente",
-  "Multum non Multa",
-  "Repetitio Mater Memoriae",
-  "Música, Rimas, Recitação e Cantigas",
-  "Maravilhamento e Curiosidade",
-  "Scholé e a Contemplação",
-  "Educação Incorporada e Litúrgica",
-  "Docendo Discimus",
-  "Optimus Magister Bonus Liber Est",
-  "Conversa",
+  { title: "Festina Lente", desc: "Apressar lentamente: domínio antes de avançar." },
+  { title: "Multum non Multa", desc: "Muito, não muitas coisas: profundidade sobre cobertura." },
+  { title: "Repetitio Mater Memoriae", desc: "A repetição é a mãe da memória." },
+  { title: "Música, Rimas e Cantigas", desc: "Cantamos o que amamos e lembramos o que cantamos." },
+  { title: "Maravilhamento e Curiosidade", desc: "O deslumbramento desperta o amor pelo estudo." },
+  { title: "Scholé e a Contemplação", desc: "Tempo e espaço sagrados para o pensamento profundo." },
+  { title: "Educação Incorporada e Litúrgica", desc: "Ritmos e práticas que modulam o aprendizado." },
+  { title: "Docendo Discimus", desc: "Ao ensinar, aprendemos duas vezes." },
+  { title: "Optimus Magister Bonus Liber Est", desc: "O melhor professor é um bom livro." },
+  { title: "Conversa", desc: "Aprender em comunidade com amigos e mestres." },
 ];
 
 export default function Home() {
@@ -262,8 +262,9 @@ export default function Home() {
               </h3>
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
                 {pedagogicalPrinciples.map((principle) => (
-                  <div key={principle} className="bg-parchment px-5 py-4 text-sm font-medium text-navy">
-                    {principle}
+                  <div key={principle.title} className="bg-parchment px-5 py-4 border-l-2 border-gold">
+                    <p className="font-serif text-lg font-semibold text-navy mb-2">{principle.title}</p>
+                    <p className="text-xs text-ink-muted leading-relaxed">{principle.desc}</p>
                   </div>
                 ))}
               </div>
@@ -285,8 +286,9 @@ export default function Home() {
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
                 {diferenciais.map((item) => (
-                  <div key={item} className="border-t border-gold bg-white p-5">
-                    <p className="font-serif text-xl leading-tight text-navy">{item}</p>
+                  <div key={item.title} className="border-t-2 border-gold bg-white p-5">
+                    <p className="font-serif text-xl font-semibold leading-tight text-navy mb-2">{item.title}</p>
+                    <p className="text-sm text-ink-muted leading-relaxed">{item.desc}</p>
                   </div>
                 ))}
               </div>
@@ -318,14 +320,17 @@ export default function Home() {
             <div className="grid gap-12 lg:grid-cols-[1fr_0.85fr] lg:items-center">
               <div>
                 <h2 className="text-3xl md:text-4xl lg:text-[44px] font-serif leading-tight mb-6">
-                  I Simpósio de ECC de JF
+                  I Simpósio de Educação Cristã Clássica de Juiz de Fora
                 </h2>
                 <p className="font-serif text-2xl italic text-gold mb-6">
                   A Paideia de Deus
                 </p>
+                <p className="font-serif text-xl leading-snug text-white mb-4">
+                  Uma conversa necessária sobre a formação das próximas gerações.
+                </p>
                 <p className="max-w-2xl text-lg leading-relaxed text-white/70">
-                  Dois dias de reflexão para famílias, educadores e líderes cristãos
-                  sobre uma educação integral, centrada em Cristo e fundamentada na Palavra.
+                  Pais, educadores e líderes reunidos para pensar uma educação integral,
+                  centrada em Cristo e fundamentada na Palavra.
                 </p>
               </div>
               <div className="border border-gold/20 p-8">

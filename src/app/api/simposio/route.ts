@@ -30,8 +30,19 @@ export async function POST(request: NextRequest) {
     // Tentar gravar no Google Sheets (não bloqueia o redirect se falhar)
     try {
       await saveToGoogleSheets({ nome, email, telefone, cidade, perfil });
-    } catch (sheetError) {
-      console.error("Erro ao salvar no Google Sheets:", sheetError);
+      console.log("Dados salvos no Google Sheets com sucesso");
+    } catch (sheetError: unknown) {
+      // Log detalhado para diagnóstico
+      const errorDetails = {
+        message: sheetError instanceof Error ? sheetError.message : String(sheetError),
+        stack: sheetError instanceof Error ? sheetError.stack : undefined,
+        hasSheetId: !!process.env.GOOGLE_SHEET_ID,
+        hasServiceEmail: !!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+        hasPrivateKey: !!process.env.GOOGLE_PRIVATE_KEY,
+        privateKeyLength: process.env.GOOGLE_PRIVATE_KEY?.length || 0,
+        privateKeyStart: process.env.GOOGLE_PRIVATE_KEY?.substring(0, 50),
+      };
+      console.error("Erro ao salvar no Google Sheets:", JSON.stringify(errorDetails, null, 2));
       // Continua mesmo com erro - não trava o lead
     }
 
@@ -60,7 +71,12 @@ async function saveToGoogleSheets(data: {
   // Trata diferentes formatos de quebra de linha da Vercel
   let privateKey = process.env.GOOGLE_PRIVATE_KEY;
   if (privateKey) {
-    privateKey = privateKey.replace(/\\n/g, "\n").replace(/\r\n/g, "\n");
+    // Remove aspas extras se existirem no início/fim
+    privateKey = privateKey.replace(/^["']|["']$/g, "");
+    // Converte literal \n para quebras de linha reais
+    privateKey = privateKey.replace(/\\n/g, "\n");
+    // Remove \r se existir
+    privateKey = privateKey.replace(/\r/g, "");
   }
 
   if (!sheetId || !serviceAccountEmail || !privateKey) {

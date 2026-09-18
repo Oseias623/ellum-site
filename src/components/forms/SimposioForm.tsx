@@ -32,20 +32,28 @@ export function SimposioForm() {
     const mensagem = `Oi! Me chamo ${data.nome}, sou de ${data.cidade}. Sou ${perfilLabel} e tenho interesse no simpósio.`;
     const whatsappUrl = `https://wa.me/5532998374676?text=${encodeURIComponent(mensagem)}`;
 
-    // Envia para n8n (fire and forget - não espera resposta)
-    fetch("https://n8nwebhook.auraesmalteria.com.br/webhook/simposio_leads", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ...data,
-        perfilLabel,
-        dataHora: new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
-      }),
-    }).catch(() => {
-      // Ignora erros - o lead vai pro WhatsApp de qualquer forma
+    // Payload para enviar ao n8n
+    const payload = JSON.stringify({
+      ...data,
+      perfilLabel,
+      dataHora: new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
     });
 
-    // Redireciona imediatamente pro WhatsApp
+    // Usa sendBeacon (mais confiável durante navegação) com fallback para fetch
+    const webhookUrl = "https://n8nwebhook.auraesmalteria.com.br/webhook/simposio_leads";
+    const sent = navigator.sendBeacon(webhookUrl, new Blob([payload], { type: "application/json" }));
+
+    if (!sent) {
+      // Fallback: tenta fetch com no-cors
+      fetch(webhookUrl, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: payload,
+      }).catch(() => {});
+    }
+
+    // Redireciona pro WhatsApp
     window.location.href = whatsappUrl;
   };
 

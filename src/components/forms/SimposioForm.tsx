@@ -20,41 +20,33 @@ export function SimposioForm() {
       perfil: formData.get("perfil") as string,
     };
 
-    const perfilLabels: Record<string, string> = {
-      "pai-mae": "pai/mãe",
-      educador: "educador",
-      "pastor-lider": "pastor/líder",
-      outro: "interessado",
-    };
-    const perfilLabel = perfilLabels[data.perfil] || data.perfil;
-
-    // Monta URL do WhatsApp
-    const mensagem = `Oi! Me chamo ${data.nome}, sou de ${data.cidade}. Sou ${perfilLabel} e tenho interesse no simpósio.`;
-    const whatsappUrl = `https://wa.me/5532998374676?text=${encodeURIComponent(mensagem)}`;
-
-    // Payload para enviar ao n8n
-    const payload = JSON.stringify({
-      ...data,
-      perfilLabel,
-      dataHora: new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
-    });
-
-    // Usa sendBeacon (mais confiável durante navegação) com fallback para fetch
-    const webhookUrl = "https://n8nwebhook.auraesmalteria.com.br/webhook/simposio_leads";
-    const sent = navigator.sendBeacon(webhookUrl, new Blob([payload], { type: "application/json" }));
-
-    if (!sent) {
-      // Fallback: tenta fetch com no-cors
-      fetch(webhookUrl, {
+    try {
+      const response = await fetch("/api/simposio", {
         method: "POST",
-        mode: "no-cors",
         headers: { "Content-Type": "application/json" },
-        body: payload,
-      }).catch(() => {});
-    }
+        body: JSON.stringify(data),
+      });
 
-    // Redireciona pro WhatsApp
-    window.location.href = whatsappUrl;
+      const result = await response.json();
+
+      if (result.redirectUrl) {
+        window.location.href = result.redirectUrl;
+      } else {
+        throw new Error("No redirect URL");
+      }
+    } catch (err) {
+      console.error("Erro ao enviar formulário:", err);
+      // Fallback: redireciona direto pro WhatsApp
+      const perfilLabels: Record<string, string> = {
+        "pai-mae": "pai/mãe",
+        educador: "educador",
+        "pastor-lider": "pastor/líder",
+        outro: "interessado",
+      };
+      const perfilLabel = perfilLabels[data.perfil] || data.perfil;
+      const mensagem = `Oi! Me chamo ${data.nome}, sou de ${data.cidade}. Sou ${perfilLabel} e tenho interesse no simpósio.`;
+      window.location.href = `https://wa.me/5532998374676?text=${encodeURIComponent(mensagem)}`;
+    }
   };
 
   const inputClasses =

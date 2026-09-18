@@ -20,30 +20,33 @@ export function SimposioForm() {
       perfil: formData.get("perfil") as string,
     };
 
-    try {
-      const response = await fetch("/api/simposio", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+    const perfilLabels: Record<string, string> = {
+      "pai-mae": "pai/mãe",
+      educador: "educador",
+      "pastor-lider": "pastor/líder",
+      outro: "interessado",
+    };
+    const perfilLabel = perfilLabels[data.perfil] || data.perfil;
 
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
+    // Monta URL do WhatsApp
+    const mensagem = `Oi! Me chamo ${data.nome}, sou de ${data.cidade}. Sou ${perfilLabel} e tenho interesse no simpósio.`;
+    const whatsappUrl = `https://wa.me/5532998374676?text=${encodeURIComponent(mensagem)}`;
 
-      const result = await response.json();
+    // Envia para n8n (fire and forget - não espera resposta)
+    fetch("https://n8neditor.auraesmalteria.com.br/webhook/simposio_leads", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...data,
+        perfilLabel,
+        dataHora: new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
+      }),
+    }).catch(() => {
+      // Ignora erros - o lead vai pro WhatsApp de qualquer forma
+    });
 
-      if (result.redirectUrl) {
-        window.location.href = result.redirectUrl;
-      } else {
-        throw new Error("No redirect URL");
-      }
-    } catch (err) {
-      console.error("Erro ao enviar formulário:", err);
-      // Fallback: redireciona direto pro WhatsApp mesmo com erro
-      const mensagem = `Oi! Me chamo ${data.nome}, sou de ${data.cidade}. Sou ${data.perfil} e tenho interesse no simpósio.`;
-      window.location.href = `https://wa.me/5532998374676?text=${encodeURIComponent(mensagem)}`;
-    }
+    // Redireciona imediatamente pro WhatsApp
+    window.location.href = whatsappUrl;
   };
 
   const inputClasses =

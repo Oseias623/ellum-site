@@ -33,7 +33,7 @@ export function SimposioForm() {
     const whatsappUrl = `https://wa.me/5532998374676?text=${encodeURIComponent(mensagem)}`;
 
     // Envia para n8n (fire and forget - não espera resposta)
-    fetch("https://n8neditor.auraesmalteria.com.br/webhook/simposio_leads", {
+    fetch("https://n8nwebhook.auraesmalteria.com.br/webhook/simposio_leads", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

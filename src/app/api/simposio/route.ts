@@ -57,7 +57,11 @@ async function saveToGoogleSheets(data: {
 }) {
   const sheetId = process.env.GOOGLE_SHEET_ID;
   const serviceAccountEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-  const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
+  // Trata diferentes formatos de quebra de linha da Vercel
+  let privateKey = process.env.GOOGLE_PRIVATE_KEY;
+  if (privateKey) {
+    privateKey = privateKey.replace(/\\n/g, "\n").replace(/\r\n/g, "\n");
+  }
 
   if (!sheetId || !serviceAccountEmail || !privateKey) {
     throw new Error("Credenciais do Google Sheets não configuradas");

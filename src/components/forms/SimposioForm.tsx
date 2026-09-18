@@ -27,15 +27,22 @@ export function SimposioForm() {
         body: JSON.stringify(data),
       });
 
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
       const result = await response.json();
 
       if (result.redirectUrl) {
         window.location.href = result.redirectUrl;
+      } else {
+        throw new Error("No redirect URL");
       }
     } catch (err) {
       console.error("Erro ao enviar formulário:", err);
-      setError("Ocorreu um erro. Tente novamente.");
-      setIsSubmitting(false);
+      // Fallback: redireciona direto pro WhatsApp mesmo com erro
+      const mensagem = `Oi! Me chamo ${data.nome}, sou de ${data.cidade}. Sou ${data.perfil} e tenho interesse no simpósio.`;
+      window.location.href = `https://wa.me/5532998374676?text=${encodeURIComponent(mensagem)}`;
     }
   };
 

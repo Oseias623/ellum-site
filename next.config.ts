@@ -1,10 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export",
-  images: {
-    unoptimized: true,
-  },
+  // API Routes habilitadas (requer Vercel ou servidor Node.js)
 };
 
 export default nextConfig;

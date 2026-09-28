@@ -44,7 +44,7 @@ const links = [
     ),
   },
   {
-    href: "https://wa.me/5532999999999",
+    href: "https://wa.me/5532998374676",
     label: "Fale Conosco",
     description: "Converse com a nossa equipe pelo WhatsApp.",
     action: "Chamar agora",

@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Montar URL do WhatsApp
-    const whatsappDestino = process.env.WHATSAPP_DESTINO || "5532998374676";
+    const whatsappDestino = (process.env.WHATSAPP_DESTINO || "5532998374676").trim();
     const perfilLabel = PERFIL_LABELS[perfil] || perfil;
     const mensagem = `Oi! Me chamo ${nome}, sou de ${cidade}. Sou ${perfilLabel} e tenho interesse no simpósio.`;
     const whatsappUrl = `https://wa.me/${whatsappDestino}?text=${encodeURIComponent(mensagem)}`;
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
     console.error("Erro na API do simpósio:", error);
 
     // Mesmo com erro, redireciona pro WhatsApp
-    const whatsappDestino = process.env.WHATSAPP_DESTINO || "5532998374676";
+    const whatsappDestino = (process.env.WHATSAPP_DESTINO || "5532998374676").trim();
     const mensagem = "Oi! Tenho interesse no simpósio.";
     const whatsappUrl = `https://wa.me/${whatsappDestino}?text=${encodeURIComponent(mensagem)}`;
 

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const links = [
   {
-    href: "/#admissoes",
+    href: "/?origem=bio#admissoes",
     label: "Matrículas 2027",
     headline: "Formação cristã clássica para seu filho.",
     description: "Agende uma visita e conheça a proposta pedagógica da ELLUM. Vagas limitadas.",

@@ -1,95 +1,61 @@
-import { NextRequest, NextResponse } from "next/server";
+const PERIODOS = new Set([
+  "maternal-2", "maternal-3", "pre-4", "pre-5", "fundamental-1",
+  "fundamental-2", "fundamental-3", "fundamental-4-acima",
+]);
+const invalid = () => Response.json({ success: false, error: "Confira os dados e o período de cada filho." }, { status: 400 });
 
-interface MatriculaData {
-  nome: string;
-  telefone: string;
-  email: string;
-  quantidadeFilhos: number;
-  filhos: { periodo: string; periodoLabel: string }[];
-  mensagem?: string;
-  dataHora: string;
-  origem: string;
-}
-
-const PERIODOS_LABELS: Record<string, string> = {
-  "maternal-2": "Maternal 2 anos",
-  "maternal-3": "Maternal 3 anos",
-  "pre-4": "Pré 4 anos",
-  "pre-5": "Pré 5 anos",
-  "fundamental-1": "Fundamental 1º ano",
-  "fundamental-2": "Fundamental 2º ano",
-  "fundamental-3": "Fundamental 3º ano",
-  "fundamental-4-acima": "Fundamental 4º ano ou acima",
-};
-
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
+  let body;
   try {
-    const body = await request.json();
-    const { nome, telefone, email, quantidadeFilhos, filhosPeriodos, mensagem, origem } = body;
-
-    // Validação básica
-    if (!nome || !telefone || !email || !filhosPeriodos?.length) {
-      return NextResponse.json(
-        { error: "Campos obrigatórios não preenchidos" },
-        { status: 400 }
-      );
+    // Bound the stream, including requests without Content-Length.
+    const reader = request.body?.getReader();
+    if (!reader) return invalid();
+    const chunks: Uint8Array[] = [];
+    let size = 0;
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      size += value.byteLength;
+      if (size > 16384) {
+        await reader.cancel();
+        return Response.json({ success: false, error: "Dados muito extensos." }, { status: 413 });
+      }
+      chunks.push(value);
     }
-
-    // Montar dados estruturados
-    const dataHora = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
-
-    const filhos = filhosPeriodos.map((periodo: string) => ({
-      periodo,
-      periodoLabel: PERIODOS_LABELS[periodo] || periodo,
-    }));
-
-    const matriculaData: MatriculaData = {
-      nome,
-      telefone,
-      email,
-      quantidadeFilhos: Number(quantidadeFilhos) || filhosPeriodos.length,
-      filhos,
-      mensagem: mensagem || "",
-      dataHora,
-      origem: origem || "site",
-    };
-
-    // Enviar para webhook n8n
-    const webhookUrl = process.env.N8N_WEBHOOK_MATRICULAS;
-
-    if (!webhookUrl) {
-      console.error("❌ N8N_WEBHOOK_MATRICULAS não configurado!");
-      return NextResponse.json(
-        { error: "Configuração do servidor incompleta" },
-        { status: 500 }
-      );
-    }
-
-    const response = await fetch(webhookUrl, {
+    const bytes = new Uint8Array(size);
+    let offset = 0;
+    for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.byteLength; }
+    body = JSON.parse(new TextDecoder().decode(bytes));
+  } catch { return invalid(); }
+  if (!body || typeof body !== "object" || Array.isArray(body)) return invalid();
+  const text = (value: unknown, max: number, required = true): value is string =>
+    typeof value === "string" && value.length <= max && (!required || value.trim().length > 0);
+  const { nome, email, telefone, filhosPeriodos } = body;
+  const quantidade = body.quantidade ?? body.quantidadeFilhos;
+  const mensagem = body.mensagem ?? "";
+  const origem = body.origem ?? "site";
+  if (!text(nome, 150) || !text(email, 254) || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) ||
+      !text(telefone, 40) || !/^[+\d\s().-]+$/.test(telefone) || !/^\d{10,15}$/.test(telefone.replace(/\D/g, "")) ||
+      !text(mensagem, 3000, false) || !Number.isInteger(quantidade) || quantidade < 1 || quantidade > 5 ||
+      !Array.isArray(filhosPeriodos) || filhosPeriodos.length !== quantidade ||
+      !filhosPeriodos.every((periodo: unknown) => typeof periodo === "string" && PERIODOS.has(periodo)) ||
+      (origem !== "site" && origem !== "bio")) return invalid();
+  const payload = { nome: nome.trim(), email: email.trim(), telefone: telefone.trim(), quantidade,
+    filhosPeriodos, mensagem: mensagem.trim(), origem, dataHora: new Date().toISOString() };
+  try {
+    const upstream = await fetch("https://n8nwebhook.auraesmalteria.com.br/webhook/matriculas", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(matriculaData),
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(15000),
+      redirect: "error",
+      cache: "no-store",
     });
-
-    if (!response.ok) {
-      console.error("❌ Erro no webhook n8n:", response.status, await response.text());
-      return NextResponse.json(
-        { error: "Erro ao registrar solicitação. Tente novamente." },
-        { status: 502 }
-      );
+    if (!upstream.ok || (await upstream.json())?.success !== true) {
+      throw new Error("Matrícula não confirmada");
     }
-
-    console.log("✅ Matrícula enviada para n8n:", matriculaData.nome);
-
-    return NextResponse.json({
-      success: true,
-      message: "Solicitação recebida com sucesso"
-    });
-  } catch (error) {
-    console.error("Erro na API de matrículas:", error);
-    return NextResponse.json(
-      { error: "Erro interno do servidor" },
-      { status: 500 }
-    );
+    return Response.json({ success: true });
+  } catch {
+    return Response.json({ success: false, error: "Não foi possível confirmar o envio. Seus dados foram mantidos. Tente novamente ou entre em contato com a escola." }, { status: 502 });
   }
 }

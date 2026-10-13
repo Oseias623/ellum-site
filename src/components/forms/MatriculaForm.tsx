@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui";
 
 const PERIODOS_2027 = [
@@ -30,8 +30,9 @@ export function MatriculaForm({
   const [quantidadeFilhos, setQuantidadeFilhos] = useState(1);
   const [filhosPeriodos, setFilhosPeriodos] = useState<string[]>([""]);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [isPending, setIsPending] = useState(false);
+  const submitting = useRef(false);
+  const [error, setError] = useState("");
 
   const handleQuantidadeChange = (novaQuantidade: number) => {
     setQuantidadeFilhos(novaQuantidade);
@@ -62,36 +63,34 @@ export function MatriculaForm({
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setIsLoading(true);
-    setError(null);
-
-    const formData = new FormData(event.currentTarget);
-
+    if (submitting.current) return;
+    submitting.current = true;
+    setIsPending(true);
+    const data = new FormData(event.currentTarget);
+    setError("");
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 20000);
     try {
       const response = await fetch("/api/matriculas", {
         method: "POST",
+        signal: controller.signal,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          nome: formData.get("nome"),
-          telefone: formData.get("telefone"),
-          email: formData.get("email"),
-          quantidadeFilhos,
-          filhosPeriodos,
-          mensagem: formData.get("mensagem"),
-          origem,
+          nome: data.get("nome"), email: data.get("email"), telefone: data.get("telefone"),
+          quantidade: quantidadeFilhos, filhosPeriodos, mensagem: data.get("mensagem"),
+          origem: new URLSearchParams(window.location.search).get("origem") === "bio" || origem === "bio" ? "bio" : "site",
         }),
       });
-
-      if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.error || "Erro ao enviar solicitação");
+      if (!response.ok || (await response.json())?.success !== true) {
+        throw new Error("Envio não confirmado");
       }
-
       setIsSubmitted(true);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Erro ao enviar solicitação");
+    } catch {
+      setError("Não foi possível confirmar o envio. Seus dados foram mantidos. Confira os campos e tente novamente ou entre em contato com a escola.");
     } finally {
-      setIsLoading(false);
+      clearTimeout(timeout);
+      submitting.current = false;
+      setIsPending(false);
     }
   };
 
@@ -123,6 +122,7 @@ export function MatriculaForm({
           type="text"
           id="nome"
           name="nome"
+          maxLength={150}
           className={inputClasses}
           placeholder="Seu nome completo"
           required
@@ -138,6 +138,7 @@ export function MatriculaForm({
             type="tel"
             id="telefone"
             name="telefone"
+            maxLength={40}
             className={inputClasses}
             placeholder="(32) 99999-9999"
             required
@@ -151,6 +152,7 @@ export function MatriculaForm({
             type="email"
             id="email"
             name="email"
+            maxLength={254}
             className={inputClasses}
             placeholder="seu@email.com"
             required
@@ -215,25 +217,22 @@ export function MatriculaForm({
         <textarea
           id="mensagem"
           name="mensagem"
+          maxLength={3000}
           rows={3}
           className={`${inputClasses} resize-none`}
           placeholder="Conte-nos um pouco sobre o que busca na educação do seu filho..."
         />
       </div>
 
-      {error && (
-        <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
-          {error}
-        </div>
-      )}
+      {error && <p role="alert" className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">{error}</p>}
 
       <Button
         type="submit"
+        disabled={isPending}
         size="lg"
-        disabled={isLoading}
         className={variant === "editorial" ? "w-full bg-navy text-white hover:bg-navy-soft disabled:opacity-50" : "w-full disabled:opacity-50"}
       >
-        {isLoading ? "Enviando..." : submitLabel}
+        {isPending ? "Enviando..." : submitLabel}
       </Button>
     </form>
   );

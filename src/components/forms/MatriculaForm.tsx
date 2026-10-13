@@ -79,6 +79,12 @@ export function MatriculaForm({
           nome: data.get("nome"), email: data.get("email"), telefone: data.get("telefone"),
           quantidade: quantidadeFilhos, filhosPeriodos, mensagem: data.get("mensagem"),
           origem: new URLSearchParams(window.location.search).get("origem") === "bio" || origem === "bio" ? "bio" : "site",
+          // UTM params capturados da URL
+          utm_source: new URLSearchParams(window.location.search).get("utm_source") || undefined,
+          utm_medium: new URLSearchParams(window.location.search).get("utm_medium") || undefined,
+          utm_campaign: new URLSearchParams(window.location.search).get("utm_campaign") || undefined,
+          utm_term: new URLSearchParams(window.location.search).get("utm_term") || undefined,
+          utm_content: new URLSearchParams(window.location.search).get("utm_content") || undefined,
         }),
       });
       if (!response.ok || (await response.json())?.success !== true) {

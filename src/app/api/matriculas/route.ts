@@ -34,6 +34,12 @@ export async function POST(request: Request) {
   const quantidade = body.quantidade ?? body.quantidadeFilhos;
   const mensagem = body.mensagem ?? "";
   const origem = body.origem ?? "site";
+  // UTM params (opcionais)
+  const utm_source = text(body.utm_source, 100, false) ? body.utm_source.trim() : undefined;
+  const utm_medium = text(body.utm_medium, 100, false) ? body.utm_medium.trim() : undefined;
+  const utm_campaign = text(body.utm_campaign, 100, false) ? body.utm_campaign.trim() : undefined;
+  const utm_term = text(body.utm_term, 200, false) ? body.utm_term.trim() : undefined;
+  const utm_content = text(body.utm_content, 200, false) ? body.utm_content.trim() : undefined;
   if (!text(nome, 150) || !text(email, 254) || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) ||
       !text(telefone, 40) || !/^[+\d\s().-]+$/.test(telefone) || !/^\d{10,15}$/.test(telefone.replace(/\D/g, "")) ||
       !text(mensagem, 3000, false) || !Number.isInteger(quantidade) || quantidade < 1 || quantidade > 5 ||
@@ -41,7 +47,8 @@ export async function POST(request: Request) {
       !filhosPeriodos.every((periodo: unknown) => typeof periodo === "string" && PERIODOS.has(periodo)) ||
       (origem !== "site" && origem !== "bio")) return invalid();
   const payload = { nome: nome.trim(), email: email.trim(), telefone: telefone.trim(), quantidade,
-    filhosPeriodos, mensagem: mensagem.trim(), origem, dataHora: new Date().toISOString() };
+    filhosPeriodos, mensagem: mensagem.trim(), origem, dataHora: new Date().toISOString(),
+    utm_source, utm_medium, utm_campaign, utm_term, utm_content };
   try {
     const upstream = await fetch("https://n8nwebhook.auraesmalteria.com.br/webhook/matriculas", {
       method: "POST",
